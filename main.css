@@ -1,0 +1,132 @@
+
+/* HEADINGS */
+h1 {color: #fff5f5; 
+    font-size: 60px; 
+    text-align: left; 
+    margin-top: 10px;
+}
+/* */
+
+
+/* BACKGROUND */
+body {
+  background-color: black;
+}
+/* */
+
+
+/* SECTIONS (TOPNAV) */
+ul.topnav {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #fff5f5;
+}
+
+ul.topnav li a {
+  display: block;
+  color: black;
+  padding: 1px 10px;
+  text-decoration: none;
+  font-family: monospace;
+  font-style: courier;
+}
+
+ul.topnav li a:hover {
+  background-color: #ffecee;
+  color: black;
+}
+/* */
+
+
+/* FORMAT 1*/
+div.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+div.flex-container > div {
+  margin: 10px;
+  color: #fff5f5;
+}
+
+@media screen and (max-width:600px) {
+  div.flex-container {
+    flex-direction: column;
+  }
+}
+/* */
+
+
+/* FORMAT 2 */
+div.flex-container2 {
+  display: block;
+}
+
+
+div.flex-container2 > div {
+  margin: 10px;
+  color: #fff5f5;
+  background-color: black;
+}
+
+
+/* READ MORE BUTTONS */
+a.hashimotos {
+  background-color: #fff5f5;
+  color: black;
+  font-family: monospace;
+  font-style: courier;
+  text-decoration: none;
+  padding: 5px 5px;
+}
+
+a.hashimotos:hover {
+  background-color: #ffecee;
+  color: black;
+}
+
+a.kenyan {
+  background-color: #fff5f5;
+  color: black;
+  font-family: monospace;
+  font-style: courier;
+  text-decoration: none;
+  padding: 5px 5px;
+}
+
+a.kenyan:hover {
+  background-color: #ffecee;
+  color: black;
+}
+
+
+/* FOOTER */
+footer {
+  background-color: black;
+  color: #fff5f5;
+  text-align: center;
+  padding: 10px;
+  font-family: monospace;
+  font-style: courier;
+}
+/* */
+
+/* */
+/* BUTTONS
+button {
+  background-color: black;
+  border: none;
+  color: #fff5f5;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  font-family: monospace;
+  font-style: courier;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+*/
