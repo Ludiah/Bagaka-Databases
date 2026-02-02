@@ -40,7 +40,7 @@ ul.topnav li a {
   text-decoration: none;
   font-family: 'Padyakke Expanded One', serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 ul.topnav li a:hover {
@@ -71,33 +71,7 @@ ul.topnav li a:hover {
   }
 }
 
-/* HOVER BOXES */
-div.vitamins:hover{
-  background-color: #F2D6CE;
-  color: #0D0D0D;
-}
-
-div.kenyan:hover{
-  background-color: #F2D6CE;
-  color: #0D0D0D;
-}
-
-div.endo:hover{
-  background-color: #F2D6CE;
-  color: #0D0D0D;
-}
-/* */
-
-p.categories {
-  font-family: 'Great Vibes', cursive;
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 1px;
-  color: #ba6f47
-}
-
-
-/* HOVER */
+/* BOXES */
 a.vitamins {
   background-color: #F2D6CE;
   color: #0D0D0D;
@@ -105,24 +79,36 @@ a.vitamins {
   padding: 5px 5px;
 }
 
-a.vitamins:hover {
-  background-color: #F2D6CE;
-  color: #0D0D0D;
-}
-
 a.kenyan {
-  background-color: #F2D6CE;
-  color: #0D0D0D;
-  font-family: monospace;
-  font-style: courier;
+  background-color: #0D0D0D;
+  color: #F2D6CE;
   text-decoration: none;
   padding: 5px 5px;
 }
 
-a.kenyan:hover {
-  background-color: #F2D6CE;
-  color: #0D0D0D;
+p.categories {
+  font-family: 'Great Vibes', cursive;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 1px;
+  color: #fff5eefa
 }
+
+
+/* HOVER */
+div.vitamins:hover{
+  border: #fff5eefa solid 1px;
+}
+
+div.kenyan:hover{
+  border: #fff5eefa solid 1px;
+}
+
+div.endo:hover{
+  border: #fff5eefa solid 1px;
+}
+/* */
+
 
 
 /* FOOTER */
@@ -134,5 +120,3 @@ footer {
   font-family: monospace;
   font-style: courier;
 }
-
-

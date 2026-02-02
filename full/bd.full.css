@@ -89,16 +89,28 @@ p.categories {
   font-size: 15px;
   font-weight: 400;
   margin-bottom: 1px;
-  color: #ba6f47
+  color: #fff5eefa
 }
 
+p.item {
+  font-family: 'Newsreader', serif;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 5px;
+  color: #F2D6CE;
+  text-align: left;
+}
+
+a.kenyan {
+  text-decoration: none;
+}
 
 /* */
 
+
 /* HOVER BOXES */
 div.kenyan:hover{
-  background-color: #F2D6CE;
-  color: #0D0D0D;
+  border: #fff5eefa solid 1px;
 }
 
 

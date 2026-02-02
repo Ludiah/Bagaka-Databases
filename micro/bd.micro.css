@@ -86,8 +86,7 @@ div.vitamins {
 
 /* HOVER BOXES */
 div.vitamins:hover{
-  background-color: #F2D6CE;
-  color: #0D0D0D;
+  border: #fff5eefa solid 1px;
 }
 /* */
 
@@ -96,7 +95,7 @@ p.categories {
   font-size: 15px;
   font-weight: 400;
   margin-bottom: 1px;
-  color: #ba6f47
+  color: #fff5eefa
 }
 
 
