@@ -1,0 +1,113 @@
+<!--------------------- WEEKLY ECONOMIC REVIEW 1 --------------------->
+
+<!-- BASIC SET-UP -->
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Bagaka Databases</title>
+</head>
+<!-- -->
+
+<!-- FONTS -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,600;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great Vibes:ital,wght@0,300;0,400;0,600;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata:ital,wght@0,300;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Padyakke+Expanded+One:ital,wght@0,300;0,400;0,600;1,300&display=swap">
+<!-- -->
+
+<!-- LINK CSS STYLESHEET -->
+<link rel="stylesheet" href="WER1.css">
+<!-- -->
+
+<!-- ICON -->
+<link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<!-- -->
+
+<!-- HEADER & TITLE -->
+<a class= title href="/"><h1>BAGAKA DATABASES<img src="../Histogram_Logo.png", height = 20px, width="20px" alt=""></h1></a>
+<ul class="topnav">
+  <li><a href="../highlights/bd.highlights.html"> &bull; HIGHLIGHTS</a></li>
+  <li><a href="../../full/bd.full.html"> &bull; FULL-LENGTH-PROJECTS</a></li>
+  <li><a href="../../micro/bd.micro.html"> &bull; MICRO-ANALYSES</a></li>
+  <li><a href="../../discussions/bd.discussions.html"> &bull; DISCUSSIONS</a></li>
+  <li><a href="../../shop/bd.shop.html"> &bull; SHOP</a></li>
+  <li><a href="../../about/bd.about.html"> &bull; ABOUT</a></li>
+</ul>
+</h1>
+<!-- -->
+
+<!-- BACKGROUND COLOR -->
+<body style="background-color:#0D0D0D;">
+<!-- -->
+
+<!-- CONTENT -->
+<h2>WEEKLY ECONOMIC REVIEW</h2>
+<h3>APRIL 11TH, 2026</h3>
+
+<figure class = "WER1">
+<img src="WER1.png" alt="WEEKLY ECONOMIC REVIEW 1" width="1000" height="800">
+</figure>
+
+<!-- OVERVIEW -->
+<h3><b>OVERVIEW:</b></h3>
+<ul>
+<li>This analysis utilizes <em>weekly economic index (WEI)</em> values
+to examine the economic conditions in the United States. </li>
+<li>Data is collected from the <em>Federal Reserve Bank of Dallas</em>, 
+where WEI's are updated weekly. </li>
+<li>A brief <em>time series analysis</em> is conducted 
+following each update with the most recent data.
+<li>Each analysis will investigate long-term and short-term trends.</li>
+</ul>
+<!-- -->
+
+<!-- WEI: DEFINITION -->
+<h3><b>WHAT IS THE WEI?</b></h3>
+<p>
+The WEI is a composite index that combines various economic indicators,
+including consumer behavior, labor market conditions, and production metrics.
+This measure can be used to make inferences about the overall health of America's economy.
+</p>
+
+<p>
+The WEI can be understood as an <em>estimated GDP growth rate</em>,
+where positive values indicate economic expansion 
+and negative values indicate contraction.
+It is important to note that these values are not exact GDP growth rates, 
+but rather estimates based on a combination of economic indicators.
+WEI values are collected at a high frequency, 
+so interpretations should be made across persisting trends,
+rather than individual data points.
+</p>
+<!-- -->
+
+<!-- CALCULATIONS -->
+<h3><b>HOW IS WEI CALCULATED?</b></h3>
+<p>
+<ul>
+<li>A <em>dynamic factor model</em> is employed 
+    from the development of ten different daily 
+    and weekly time series.</li>
+<li>The comovements of a vector of <em>N</em> time series variables
+    is driven by some small number of common factors, <em>f<sub>t</sub></em>,
+    which are estimated using principal components.</li>
+<li>This model assumes an observed series 
+    representing the total dynamic effect of the common factors, 
+    as well as an error term: 
+<p><em>X<sub>t</sub>=
+    &#955(L)f<sub>t</sub>
+    +&#949<sub>t</sub></em></li></p>
+<li> Components of a vector of lag polynomials &#955(L)
+    are used to capture the dynamic factor loadings.</li>
+<li>The dynamic factor is then expressed in static form
+    by stacking the common components <em>&#955<sub>i</sub>(L)f<sub>t</sub>
+    +&#949<sub>t</sub></em> into a vector <em>F<sub>t</sub></em>
+    resulting in <em>&#955(L)</em>dimensions.</li>
+</ul>
+</p>
+
+
+
+</body>
+</html>
