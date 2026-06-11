@@ -50,14 +50,11 @@ ul.topnav li a:hover {
 /* */
 
 /* BODY FORMAT */
-.container {
+div.container {
   display: flex;
   flex-direction: row;
   background-color: #0D0D0D;
   justify-content: center;
-}
-
-.container div {
   width: 300px;
   margin: 10px;
   text-align: left;  
@@ -65,7 +62,7 @@ ul.topnav li a:hover {
   padding: 10px;
 }
 
-.container {
+div.container {
   background: red !important;
 }
 
