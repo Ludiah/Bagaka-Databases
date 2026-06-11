@@ -65,10 +65,8 @@ ul.topnav li a:hover {
   padding: 10px;
 }
 
-@media (max-width: 480px) {
-  body {
-    background: red;
-  }
+.container {
+  background: red !important;
 }
 
 /* BOXES */
