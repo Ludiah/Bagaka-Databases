@@ -86,12 +86,20 @@ a.kenyan {
   padding: 5px 5px;
 }
 
+a.endo {
+  background-color: #0D0D0D;
+  color: #F2D6CE;
+  text-decoration: none;
+  padding: 5px 5px;
+}
+
 a.WER1 {
   background-color: #0D0D0D;
   color: #F2D6CE;
   text-decoration: none;
   padding: 5px 5px;
 }
+
 
 p.categories {
   font-family: 'Great Vibes', cursive;

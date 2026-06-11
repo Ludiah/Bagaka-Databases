@@ -111,6 +111,11 @@ text-decoration: none;
 color: #F2D6CE;
 }
 
+a.endo {
+text-decoration: none;
+color: #F2D6CE;
+}
+
 a.WER1 {
 text-decoration: none;
 color: #F2D6CE;
@@ -144,6 +149,5 @@ p.categories {
   margin-bottom: 1px;
   color: #fff5eefa
 }
-
 
 

@@ -1,0 +1,1118 @@
+<!--------------------- ENDOMETRIOSIS DIAGNOSTIC MODEL --------------------->
+
+<!-- BASIC SET-UP -->
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Bagaka Databases</title>
+</head>
+<!-- -->
+
+<!-- FONTS -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,600;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great Vibes:ital,wght@0,300;0,400;0,600;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata:ital,wght@0,300;1,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Padyakke+Expanded+One:ital,wght@0,300;0,400;0,600;1,300&display=swap">
+<!-- -->
+
+<!-- LINK CSS STYLESHEET -->
+<link rel="stylesheet" href="endo.project.css">
+<!-- -->
+
+<!-- ICON -->
+<link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<!-- -->
+
+<!-- HEADER & TITLE -->
+<a class= title href="/"><h1>BAGAKA DATABASES<img src="../Histogram_Logo.png", height = 20px, width="20px" alt=""></h1></a>
+<ul class="topnav">
+  <li><a href="../highlights/bd.highlights.html"> &bull; HIGHLIGHTS</a></li>
+  <li><a href="../../full/bd.full.html"> &bull; FULL-LENGTH-PROJECTS</a></li>
+  <li><a href="../../micro/bd.micro.html"> &bull; MICRO-ANALYSES</a></li>
+  <li><a href="../../discussions/bd.discussions.html"> &bull; DISCUSSIONS</a></li>
+  <li><a href="../../shop/bd.shop.html"> &bull; SHOP</a></li>
+  <li><a href="../../about/bd.about.html"> &bull; ABOUT</a></li>
+</ul>
+</h1>
+<!-- -->
+
+<!-- BACKGROUND COLOR -->
+<body style="background-color:#0D0D0D;">
+<!-- -->
+
+
+<!-- 1. THE TABLE OF CONTENTS -->
+ <div class="scrollable-container">
+ <nav class="toc-box">
+    <ul class = "toc">
+        <li><a href="#section-1" class = "toc-link">1. Abstract</a></li>
+        <li ><a href="#section-2" class = "toc-link">2. Introduction</a></li>
+        <li><a href="#section-3" class = "toc-link">3. Methodology</a></li>
+            <li style="text-indent: 20px;"><a href="#section-3.1" class = "toc-link">3.1. Data Collection </a></li>
+            <li style="text-indent: 20px;"><a href="#section-3.2" class = "toc-link">3.2. Exploratory Data Analysis</a></li>
+            <li style="text-indent: 20px;"><a href="#section-3.3" class = "toc-link">3.3. Bayesian Logistic Regression</a></li>
+        <li><a href="#section-4" class = "toc-link">4. Results</a></li>
+            <li style="text-indent: 20px;"><a href="#section-4.1" class = "toc-link">4.1. Fitted Models</a></li>
+            <li style="text-indent: 20px;"><a href="#section-4.2" class = "toc-link">4.2. Model Assessments</a></li>
+        <li><a href="#section-5" class = "toc-link">5. Conclusion</a></li>
+        <li><a href="#section-6" class = "toc-link">6. References</a></li>
+
+    </ul>
+</nav>
+</div>
+
+<!-- CONTENT -->
+<h2>BAYESIAN DIAGNOSTIC MODEL DEVELOPMENT FOR ENDOMETRIOSIS 
+    USING MARKOV CHAIN MONTE CARLO METHODS (MCMC) AND SYNTHETIC DATA</h2>
+
+<!-- ABSTRACT -->
+<section id="section-1">
+<div class ="abstract">
+    <h3><b>ABSTRACT</b></h3>
+    <p class = "abstract">
+        Endometriosis is notoriously difficult to diagnosis. 
+        Patients wait an average of seven years to receive a formal diagnosis [1]. 
+        In this study, Bayesian logistic regression is applied to synthetic data 
+        to develop a predictive model which can aid in early detection of endometriosis. 
+        Comparisons are made across six candidate models with informative normal 
+        and weakly informative Cauchy priors. The Markov Chain Monte Carlo 
+        and Metropolis-Hastings algorithm is applied to these general linear models 
+        to predict the odds of possessing this gynecological condition. 
+    </p>
+</div>
+
+<div class = "keywords">
+    <p class="keywords">
+        <b>KEYWORDS:</b> Endometriosis, Bayesian inference, 
+        general linear model, Markov Chain Monte Carlo, 
+        Metropolis-Hastings, normal prior, Cauchy prior
+</p>
+</div>
+</section>
+
+<!-- INTRODUCTION -->
+<section id="section-2">
+<div class = "introduction">
+    <h3><b>INTRODUCTION</b></h3>
+    <p class="introduction">
+        Endometriosis is a chronic inflammatory condition, 
+        where tissue similar to the uterine lining grows outside of the uterus 
+        resulting in inflammation, scarring, and severe pain. 
+        It is characterized by a broad spectrum of symptoms, 
+        some of which include chronic pain, gastrointestinal issues, fatigue, 
+        irregular menstruation, and infertility. 
+        This condition has been associated with a reduced quality of life 
+        and the delay in its detection prolongs patients' access to necessary treatments for symptom management. 
+        As of now, the only definitive way of diagnosing this condition is through a laparoscopy; 
+        a minimally invasive surgery [2]. When endometrial lesions are detected, 
+        they are generally removed and biopsied to confirm diagnosis. 
+        The removal of these lesions are expected to alleviate symptoms. 
+        One major drawback of this technique is that when endometriosis is not found, 
+        patients are burdened with the vulnerability of recovering from a painful, unwarranted, and costly procedure. 
+        Women with presumed diagnoses avoid this procedure out of fear of a similar outcome. 
+        These drawbacks highlight several motivations to develop a diagnostic model to infer the probability of endometriosis being present. 
+    </p>
+</div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="section-3">
+    <!-- DATA COLLECTION -->
+<div class = "methodology">
+    <h3><b>METHODOLOGY</b></h3>
+    <section id="section-3.1">
+    <h4><b>DATA COLLECTION</b></h4>
+    <p class="data.collection">
+        Since endometriosis research is widely considered to be under-researched 
+        and under-funded, relevant data sets are hard to access. 
+        Consequently, this study utilizes synthetic data simulated 
+        to resemble a real-life experiment. This Kaggle data set consists of 
+        10,000 observations reflecting common characteristics 
+        and symptoms of endometriosis [3]. 
+        This study's data is strictly utilized for training purposes 
+        and should not be generalized to its respective population. 
+    </p>
+    </section>
+
+    <!-- EDA -->
+    <section id="section-3.2">
+    <h4><b>EDA:</b></h4>
+    <p class="eda">
+        In this study, six variables are used to predict the binary outcome 
+        of whether or not endometriosis is present (0 = No, 1 = Yes). 
+        These predictors are highlighted in <i>Table 1</i>.
+    </p>
+
+<!-- TABLE 1 -->
+<table>
+<caption>Table 1: Description of Predictors</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:left;"> Type </th>
+   <th style="text-align:left;"> Description </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Age </td>
+   <td style="text-align:left;"> Discrete </td>
+   <td style="text-align:left;"> Age of individual (18-50). </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Menstrual Irregularity </td>
+   <td style="text-align:left;"> Binary </td>
+   <td style="text-align:left;"> Indicates whether or not 
+                     individual's menstrual cycle is irregular 
+                     (0 = No, 1 = Yes). </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chronic Pain Level </td>
+   <td style="text-align:left;"> Continuous </td>
+   <td style="text-align:left;"> Self-reported pain severity level
+                     (scale from 0-10). </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hormone Level Abnormality </td>
+   <td style="text-align:left;"> Binary </td>
+   <td style="text-align:left;"> Indicates precense of abnormal hormone levels 
+                     (0 = No , 1 = Yes). </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Infertility </td>
+   <td style="text-align:left;"> Binary </td>
+   <td style="text-align:left;"> Indicates whether or not an individual 
+                     experiences infertility 
+                     (0 = No, 1 = Yes). </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BMI </td>
+   <td style="text-align:left;"> Infertility </td>
+   <td style="text-align:left;"> Body Mass Index (18-40 kilograms per square meter). </td>
+  </tr>
+</tbody>
+</table>
+
+According to the graphs of quantitative variables in <i>Figure 1</i>, 
+the distribution of ages appear to follow a normal, 
+yet slightly static distribution centered around a mean of 34 years old. 
+Chronic pain levels are distributed normally around a mean of 5, 
+while body mass indices are slightly skewed-right with a mean 
+and median of about 23. The skewness of the distribution 
+for BMI values can be explained by several high outliers. 
+This feature is expected, as there is a high prevalence of obesity 
+in the United States. Based on the box plots in <i>Figure 1</i>, 
+a diagnosis of endometriosis seems to be associated with 
+higher chronic pain levels and BMI's. 
+Since endometriosis is more common in women of reproductive age, 
+and less common in women experiencing and transitioning into menopause, 
+we would expect this condition to affect a narrower range (smaller variance) 
+of individuals. 
+
+<!-- FIGURE 1 -->
+<figure class = "figures">
+    <img src="Endo.EDA.Figure1.png" alt="EXPLORATORY DATA ANALYSIS GRAPHS", width="800", height="600">
+    <figcaption><i>Figure 1: Histograms & Boxplots of Quantitative Variables</i></figcaption>
+</figure>
+
+Based on the bar charts in <i></i>Figure 2</i>, 
+endometriosis appears to be more prevalent in individuals 
+who experience menstrual irregularity, hormone abnormality, and infertility. 
+These binary variables are expected to share a positive relationship 
+with the odds of an endometriosis diagnosis.
+
+<!-- FIGURE 2 -->
+<figure class = "figures">
+    <img src="Endo.EDA.Figure2.png" alt="EXPLORATORY DATA ANALYSIS GRAPHS", width="800", height="600">
+    <figcaption><i>Figure 2: Bar Charts of Binary Variables</i></figcaption>
+</figure>
+
+The correlation heat map in <i>Figure 3</i>, 
+indicates that the strongest positive association exists 
+between the presence of endometriosis and hormone level abnormalities. 
+Other significant predictors that share a significant positive relationship 
+with the response are chronic pain level, infertility and menstrual irregularity respectively. 
+These explanatory variable are expected to dominate the regression model.
+
+<!-- FIGURE 3 -->
+<figure class = "figures">
+    <img src="Endo.EDA.Figure3.png" alt="EXPLORATORY DATA ANALYSIS GRAPHS", width="800", height="600">
+    <figcaption><i>Figure 3: Correlation Heat Map</i></figcaption>
+</figure>
+    </section>
+
+<!-- BAYESIAN LOGISTIC REGRESSION -->
+ <section id="section-3.3">
+ <h4><b>BAYESIAN LOGISTIC REGRESSION:</b></h4>
+ <p>
+The response variable follows a binomial distribution, y<sub>i</sub> ~ Bin(n<sub>i</sub>, μ<sub>i</sub>), 
+where n<sub>i</sub> is known.
+We select a logit transformation, 
+log( u<sub>i</sub> / (1 - u<sub>i</sub>) ),
+to link the linear predictors to the mean of the response [4].
+</p>
+
+<p>
+We choose the model:
+</p>
+
+<p>
+log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>) =
+&beta;<sub>0</sub> + &beta;<sub>1</sub>x<sub>1</sub> + &beta;<sub>2</sub>x<sub>2</sub> + &beta;<sub>3</sub>x<sub>3</sub> +
+&beta;<sub>4</sub>x<sub>4</sub> + &beta;<sub>5</sub>x<sub>5</sub> + &beta;<sub>6</sub>x<sub>6</sub>,
+where &beta;<sub>0</sub>, &beta;<sub>1</sub>, ..., &beta;<sub>6</sub> ~ Normal(0, σ)
+</p>
+
+<p>
+The data distribution for y is:
+</p>
+
+<p>
+p(y | &beta;) =
+&Pi;<sub>i=1</sub><sup>n</sup>
+[ C(n<sub>i</sub>, y<sub>i</sub>) ·
+( e<sup>n<sub>i</sub></sup> / (1 + e<sup>n<sub>i</sub>) )<sup>y<sub>i</sub></sup> ·
+( 1 / (1 + e<sup>n<sub>i</sub>) )<sup>n<sub>i</sub> - y<sub>i</sub></sup> ]
+</p>
+
+<h5><b>Normal Informative Priors</b></h5>
+<p>
+Parameterization of the explanatory variables was considered using normal prior distributions, 
+&beta;<sub>i</sub> ~ N(&beta;, Σ<sub>&beta;</sub>) for &beta;<sub>0</sub>, &beta;<sub>1</sub>, …, &beta;<sub>6</sub>.
+In this intuitive approach, prior information can be expressed directly in terms of these parameters [5].
+</p>
+
+<p>
+The intercept parameter &beta;<sub>0</sub> is selected based on the belief that a “typical” woman aged 18–50
+has a 5%–20% chance of having endometriosis. The logit transformation is applied to this range,
+and the prior mean is defined as the midpoint of the transformed values.
+</p>
+
+<p>
+β<sub>0 (centered)</sub> =
+[ <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>(0.05) + <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>(0.20) ] / 2
+</p>
+
+<p>
+The prior standard deviation of β<sub>0</sub> is set as half the distance between this centered value
+and the endpoints of the transformed range.
+</p>
+
+<p>
+Σ<sub>β0</sub> =
+( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>(0.05) + <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>(0.20) ) / 2
+=
+( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>(0.20) − <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>(0.05) ) / 2
+</p>
+
+For each proceeding coefficient, 
+we calculate the expected log of odds for each unit increase in the explanatory variable. 
+For instance, we would expect the odds of an endometriosis diagnosis to increase by 25% 
+for each increased level of chronic pain. 
+As a result, the prior mean on &#946<sub>3</sub> is <i>log(1.25)</i> 
+and the standard deviation is the halfway distance between this value 
+and the upper and lower bounds bounds of  &#946<sub>3</sub>[5]. 
+<i>Table 2</i> provides the prior mean and standard deviation selected for each coefficient.
+
+<!-- TABLE 2 -->
+<table>
+<caption>Table 2: Prior Mean and Standard Deviation for Coefficients</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Predictors </th>
+   <th style="text-align:right;"> Prior Mean </th>
+   <th style="text-align:right;"> Prior Standard Deviation </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Intercept </td>
+   <td style="text-align:right;"> -2.1653667 </td>
+   <td style="text-align:right;"> 0.3895362 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Age </td>
+   <td style="text-align:right;"> 0.0476551 </td>
+   <td style="text-align:right;"> 0.0238275 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Menstrual Irregularity </td>
+   <td style="text-align:right;"> 0.1311821 </td>
+   <td style="text-align:right;"> 0.0655911 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chronic Pain Level </td>
+   <td style="text-align:right;"> 0.2027326 </td>
+   <td style="text-align:right;"> 0.1013663 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hormone Level Abnormaility </td>
+   <td style="text-align:right;"> 0.2027326 </td>
+   <td style="text-align:right;"> 0.1013663 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Infertility </td>
+   <td style="text-align:right;"> 0.1311821 </td>
+   <td style="text-align:right;"> 0.0655911 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BMI </td>
+   <td style="text-align:right;"> 0.0476551 </td>
+   <td style="text-align:right;"> 0.0238275 </td>
+  </tr>
+</tbody>
+</table>
+
+Before new data is observed from the likelihood, 
+the expected range of values can be estimated. <i>Table 3</i>
+ highlights these 95% prior quantile intervals, 
+ which reinforce the prior belief that a typical patient 
+ is unlikely to have endometriosis, 
+ but with each increased value in the coefficients, 
+ the odds of a positive diagnosis increase. 
+
+<!-- TABLE 3 -->
+<table>
+<caption>Table 3: 95 Percent Prior Quantile Intervals</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Predictors </th>
+   <th style="text-align:right;"> Lower Bound </th>
+   <th style="text-align:right;"> Upper Bound </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Intercept </td>
+   <td style="text-align:right;"> -2.9288435 </td>
+   <td style="text-align:right;"> -1.4018898 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Age </td>
+   <td style="text-align:right;"> 0.0009540 </td>
+   <td style="text-align:right;"> 0.0943562 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Menstrual Irregularity </td>
+   <td style="text-align:right;"> 0.0026260 </td>
+   <td style="text-align:right;"> 0.2597383 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chronic Pain Level </td>
+   <td style="text-align:right;"> 0.0040583 </td>
+   <td style="text-align:right;"> 0.4014068 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hormone Level Abnormaility </td>
+   <td style="text-align:right;"> 0.0040583 </td>
+   <td style="text-align:right;"> 0.4014068 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Infertility </td>
+   <td style="text-align:right;"> 0.0026260 </td>
+   <td style="text-align:right;"> 0.2597383 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BMI </td>
+   <td style="text-align:right;"> 0.0009540 </td>
+   <td style="text-align:right;"> 0.0943562 </td>
+  </tr>
+</tbody>
+</table>
+
+<h5>Cauchy Priors</h5>
+We consider the Cauchy distribution to embrace a conservative approach 
+to selecting priors. 
+These weekly informative priors offer a balance between the unstable, 
+extreme inferences obtained from highly informative 
+and completely non-informative priors. To apply this model, 
+binary independent variable are standardized to have a mean of zero 
+and standard deviation of 1, 
+while the remaining quantitative variables are standardized to have 
+a mean of zero and a standard deviation of 0.5. 
+This step is essential to compensate for the varying units of measure 
+and possible ranges in the data [6].
+
+The Cauchy assumes a Student t-distribution with mean 0, 
+degrees-of-freedom set to 1, and a scale of 2.5 for all six coefficients [6].
+
+<p><i>&#946<sub>1</sub>, &#946<sub>2</sub>, &#946<sub>3</sub>, 
+&#946<sub>4</sub>, &#946<sub>5</sub>, &#946<sub>6</sub> 
+~ Cauchy(x<sub>0</sub> = 0, &#947 = 2.5)</i></p>
+
+Alternatively, we apply a weaker prior to the constant term. 
+Since the baseline prevalence of endometriosis is not as high, 
+the scale is increased from 2.5 to 10 [6].
+
+<p><i>&#946<sub>0</sub> ~ Cauchy(x<sub>0</sub> = 0, &#947 = 10)</i></p>
+
+<h4>The Metropolis-Hastings Algorithm</h4>
+<p>
+The joint posterior distribution for the logistic regression model 
+can be expressed as:
+</p>
+
+<p>
+p(&beta;, y) ∝
+&Pi;<sub>i</sub> Bin(x<sub>i</sub> | n<sub>i</sub>, logit(X<sub>i</sub>&beta;))
+· &Pi;<sub>i</sub> Normal(&beta;<sub>i</sub> | &mu;<sub>i</sub>, &sigma;<sub>i</sub>)
+</p>
+
+<p>
+when normal priors are selected, and
+</p>
+
+<p>
+p(&beta;, y) ∝
+&Pi;<sub>i</sub> Bin(x<sub>i</sub> | n<sub>i</sub>, logit(X<sub>i</sub>&beta;))
+· &Pi;<sub>i</sub> Cauchy(&beta;<sub>i</sub> | x<sub>i</sub>, &gamma;<sub>i</sub>)
+</p>
+
+<p>
+when Cauchy priors are applied.
+</p>
+
+<p>
+Since these distributions cannot be obtained directly, MCMC methods 
+are applied to estimate the posterior.
+</p>
+
+<p>
+The Metropolis–Hastings algorithm relies on an arbitrary 
+initial value <i>x<sup>(0)</sup></i>
+drawn from a proposal distribution <i>q(x)</i> to initialize the process.
+</p>
+
+<p>
+Initialize: x<sup>(0)</sup> ~ q(x)
+</p>
+
+<p>
+For the next iteration, a new candidate value <i>x<sup>(cand)</sup></i> 
+is simulated from a proposal distribution
+<i>q(x<sup>(i)</sup> | x<sup>(i−1)</sup>)</i>.
+</p>
+
+<p>
+Propose: x<sup>(i)</sup> ~ q(x<sup>(i)</sup> | x<sup>(i−1)</sup>)
+</p>
+
+<p>
+The acceptance probability <i>&alpha;</i> determines whether the proposed value becomes the next state.
+It is computed using the ratio of proposal probabilities:
+</p>
+
+<p>
+&alpha; = min(1, 
+[ q(x<sup>(cand)</sup> | x<sup>(i−1)</sup>) / q(x<sup>(i−1)</sup> | x<sup>(cand)</sup>) ])
+</p>
+
+<p>
+This process is repeated for iterations <i>i= 1, 2, … </i>  
+until the Markov chains converge to the posterior distribution [7].
+</p>
+</div>
+</section>
+</section>
+
+<!-- RESULTS -->
+<section id="section-4">
+<div class = "results">
+    <h3><b>RESULTS</b></h3>
+    <section id="section-4.1">
+    <h4><b>Fitted Models</b></h4>
+<p>
+Six proposal models are developed to predict the odds of an endometriosis diagnosis given a series of potential symptoms and characteristics.
+The first four models utilize normal informative prior distributions, where prior parameters are intuitively chosen.
+The first model includes all input variables and can be expressed as follows:
+</p>
+
+<h6>Model 1:</h6>
+
+<p>
+log(<sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>)=
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Age) +
+&beta;<sub>2</sub>(Menstrual Irregularity) +
+&beta;<sub>3</sub>(Chronic Pain Level) +
+&beta;<sub>4</sub>(Hormone Abnormality) +
+&beta;<sub>5</sub>(Infertility) +
+&beta;<sub>6</sub>(BMI)
+</p>
+
+In the fitted models, coefficients for age and BMI are close to zero 
+indicating a low level of significance on the overall model. 
+To further assess their significance,
+ these predictors are transformed in the second model, 
+ so that age is scaled to every five years 
+ and BMI is analyzed categorically. 
+ <i>Table 4</i> shows the frequency table for the BMI categories.
+
+<!-- TABLE 4 -->
+ <table>
+<caption>Table 4: Frequency of BMI Categories</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Var1 </th>
+   <th style="text-align:right;"> Freq </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Healthy Weight </td>
+   <td style="text-align:right;"> 5511 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Obese </td>
+   <td style="text-align:right;"> 418 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Overweight </td>
+   <td style="text-align:right;"> 2793 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Underweight </td>
+   <td style="text-align:right;"> 1278 </td>
+  </tr>
+</tbody>
+</table>
+
+<p>
+The fitted equation for takes the following form:
+</p>
+
+<h6>Model 2:</h6>
+
+<p>
+log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>) =
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Age/5) +
+&beta;<sub>2</sub>(Menstrual Irregularity) +
+&beta;<sub>3</sub>(Chronic Pain Level) +
+&beta;<sub>4</sub>(Hormone Abnormality) +
+&beta;<sub>5</sub>(Infertility) +
+&beta;<sub>6</sub>(Obese) +
+&beta;<sub>7</sub>(Overweight) +
+&beta;<sub>8</sub>(Underweight)
+</p>
+
+In Models 3 and 4, 
+variables for age and BMI are dropped 
+respectively:
+
+<h6>Model 3:</h6>
+
+<p>
+log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>) =
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Menstrual Irregularity) +
+&beta;<sub>2</sub>(Chronic Pain Level) +
+&beta;<sub>3</sub>(Hormone Abnormality) +
+&beta;<sub>4</sub>(Infertility) +
+&beta;<sub>5</sub>(Obese) +
+&beta;<sub>6</sub>(Overweight) +
+&beta;<sub>7</sub>(Underweight)
+</p>
+
+<h6>Model 4:</h6>
+
+<p>
+log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>) =
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Menstrual Irregularity) +
+&beta;<sub>2</sub>(Chronic Pain Level) +
+&beta;<sub>3</sub>(Hormone Abnormality) +
+&beta;<sub>4</sub>(Infertility) +
+</p>
+
+Although these variables are removed to simplify the model 
+and prevent noise, dropping these variables could result in information loss, 
+especially since there is no evidence of collinearity present in the data. 
+This is considered when fitting the two remaining models with Cauchy priors. 
+Since there is significant information in the overweight and obese categories, 
+the BMI variable is kept in Models 5 and 6.  
+
+<h6>Model 5:</h6>
+<p>
+log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>)=
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Age) +
+&beta;<sub>2</sub>(Menstrual Irregularity) +
+&beta;<sub>3</sub>(Chronic Pain Level) +
+&beta;<sub>4</sub>(Hormone Abnormality) +
+&beta;<sub>5</sub>(Infertility) +
+&beta;<sub>6</sub>(BMI)
+</p>
+
+<h6>Model 6:</h6>
+<p>
+log(<sup>&pi</sup>&frasl;<sub>1 - &pi;</sub>)=
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Menstrual Irregularity) +
+&beta;<sub>2</sub>(Chronic Pain Level) +
+&beta;<sub>3</sub>(Hormone Abnormality) +
+&beta;<sub>4</sub>(Infertility) +
+&beta;<sub>5</sub>(BMI)
+</p>
+
+<i>Table 5</i> provides the results of fitted Models 1-6. 
+Based on these results, hormone abnormalities and chronic pain level 
+appear to consistently hold the most predictive power across all six models.
+
+<table>
+<caption>Table 5: Posterior Coefficient Estimates for Models 1-6 </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Estimate </th>
+   <th style="text-align:left;"> Model 1 </th>
+   <th style="text-align:left;"> Model 2 </th>
+   <th style="text-align:left;"> Model 3 </th>
+   <th style="text-align:left;"> Model 4 </th>
+   <th style="text-align:left;"> Model 5 </th>
+   <th style="text-align:left;"> Model 6 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Intercept </td>
+   <td style="text-align:left;"> -2.144471 </td>
+   <td style="text-align:left;"> -1.231417 </td>
+   <td style="text-align:left;"> -1.832922 </td>
+   <td style="text-align:left;"> -1.720188 </td>
+   <td style="text-align:left;"> -0.404786 </td>
+   <td style="text-align:left;"> -0.404599 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Age </td>
+   <td style="text-align:left;"> -0.001714 </td>
+   <td style="text-align:left;"> -0.001642 </td>
+   <td style="text-align:left;"> ommitted </td>
+   <td style="text-align:left;"> ommitted </td>
+   <td style="text-align:left;"> -0.039812 </td>
+   <td style="text-align:left;"> ommitted </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Menstrual Irregularity </td>
+   <td style="text-align:left;"> 0.132292 </td>
+   <td style="text-align:left;"> 0.129262 </td>
+   <td style="text-align:left;"> 0.335697 </td>
+   <td style="text-align:left;"> 0.339813 </td>
+   <td style="text-align:left;"> 0.206866 </td>
+   <td style="text-align:left;"> 0.207461 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chronic Pain Level </td>
+   <td style="text-align:left;"> 0.109986 </td>
+   <td style="text-align:left;"> 0.110095 </td>
+   <td style="text-align:left;"> 0.125449 </td>
+   <td style="text-align:left;"> 0.12447 </td>
+   <td style="text-align:left;"> 0.505207 </td>
+   <td style="text-align:left;"> 0.506221 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hormone Level Abnormaility </td>
+   <td style="text-align:left;"> 0.230077 </td>
+   <td style="text-align:left;"> 0.22889 </td>
+   <td style="text-align:left;"> 0.610487 </td>
+   <td style="text-align:left;"> 0.603655 </td>
+   <td style="text-align:left;"> 0.4406668 </td>
+   <td style="text-align:left;"> 0.40658 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Infertility </td>
+   <td style="text-align:left;"> 0.131111 </td>
+   <td style="text-align:left;"> 0.131966 </td>
+   <td style="text-align:left;"> 0.340058 </td>
+   <td style="text-align:left;"> 0.339403 </td>
+   <td style="text-align:left;"> 0.205028 </td>
+   <td style="text-align:left;"> 0.204763 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BMI </td>
+   <td style="text-align:left;"> 0.043092 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> ommitted </td>
+   <td style="text-align:left;"> 0.353553 </td>
+   <td style="text-align:left;"> 0.3542265 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Obese </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> 0.067705 </td>
+   <td style="text-align:left;"> 0.240297 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Overweight </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> 0.129528 </td>
+   <td style="text-align:left;"> 0.348393 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Underweight </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> 0.026705 </td>
+   <td style="text-align:left;"> 0.038178 </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+   <td style="text-align:left;"> - </td>
+  </tr>
+</tbody>
+</table>
+    </section>
+
+    <section id="section-4.2">
+<h4><b>Model Assessments</b></h4>
+<h5><b>ROC Curves & Accuracy Metrics</b></h5>
+Classifications are created so that posterior values greater than or equal to 0.4 
+are presumed to have a positive endometriosis diagnosis. 
+Otherwise, a patient is classified as negative. 
+ROC curves <i>(Figure 4)</i> and accuracy measures <i>(Table 6)</i> 
+serve as preliminary performance indicators for model selection. 
+With an area-under-the curve (AUC) ranging from 0.63-0.67, 
+each model performs slightly better than random chance at different thresholds. 
+Since this study is most concerned with identifying positive cases of endometriosis, 
+it makes sense to maximize sensitivity. 
+The models with the highest sensitivity are 3, 5 and 6. 
+These models achieved the highest metrics for specificity, Cohen's Kappa, and AUC.
+ Kappa values in these three models are approximately 0.22, 
+ indicating fair agreement between predicted and observed outcomes 
+ after accounting for random chance. 
+ Due to the results of this section, 
+ the remainder of the analysis is performed on Models 3, 5, and 6.
+
+ <!-- FIGURE 4 -->
+<figure class = "figures">
+    <img src="Endo.EDA.Figure4.png" alt="ROC CURVES", width="800", height="600">
+    <figcaption><i>Figure 4: ROC Curves</i></figcaption>
+</figure>
+
+<!-- TABLE 6 -->
+<table>
+<caption>Table 6: Preliminary Performance Metrics</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Model </th>
+   <th style="text-align:right;"> Balanced Accuracy </th>
+   <th style="text-align:right;"> Sensitivity </th>
+   <th style="text-align:right;"> specificity </th>
+   <th style="text-align:right;"> Kappa </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Model 1 </td>
+   <td style="text-align:right;"> 0.5944791 </td>
+   <td style="text-align:right;"> 0.6312822 </td>
+   <td style="text-align:right;"> 0.5576761 </td>
+   <td style="text-align:right;"> 0.1812516 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 2 </td>
+   <td style="text-align:right;"> 0.5945416 </td>
+   <td style="text-align:right;"> 0.6452562 </td>
+   <td style="text-align:right;"> 0.5438271 </td>
+   <td style="text-align:right;"> 0.1804540 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 3 </td>
+   <td style="text-align:right;"> 0.6132502 </td>
+   <td style="text-align:right;"> 0.6526109 </td>
+   <td style="text-align:right;"> 0.5738895 </td>
+   <td style="text-align:right;"> 0.2173342 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 4 </td>
+   <td style="text-align:right;"> 0.6061215 </td>
+   <td style="text-align:right;"> 0.6496690 </td>
+   <td style="text-align:right;"> 0.5625739 </td>
+   <td style="text-align:right;"> 0.2032446 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 5 </td>
+   <td style="text-align:right;"> 0.6150781 </td>
+   <td style="text-align:right;"> 0.6518755 </td>
+   <td style="text-align:right;"> 0.5782807 </td>
+   <td style="text-align:right;"> 0.2210765 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 6 </td>
+   <td style="text-align:right;"> 0.6156774 </td>
+   <td style="text-align:right;"> 0.6513851 </td>
+   <td style="text-align:right;"> 0.5799696 </td>
+   <td style="text-align:right;"> 0.2223255 </td>
+  </tr>
+</tbody>
+</table>
+
+<h5><b>Posterior Predictive Checks</b></h5>
+Posterior predictive checks <i>(Figure 5)</i> are performed 
+to evaluate the fit of the model to the observed data [5]. The dark blue lines, 
+which represents the observed data distribution 
+closely overlaps the light blue line representing data simulated 
+by the posterior distribution. Based on these features, 
+all six models appear to be an adequate fit for newly observed data [8]. 
+
+ <!-- FIGURE 5 -->
+<figure class = "figures">
+    <img src="Endo.Results.Figure5.png" alt="POSTERIOR PREDICTIVE CHECKS", width="800", height="600">
+    <figcaption><i>Figure 5: Posterior Predictive Checks (Models 1-6)</i></figcaption>
+</figure>
+
+<h5><b>Stratified K-Fold Cross Validation, ELPD, & LOOIC</b></h5>
+The accuracy of these three models are further assessed using 
+stratified k-fold cross validation accuracy, 
+expected log-predictive density (ELPD), and 
+the leave-one-out cross validation information criterion. 
+The aim is to maximize the expected log-predictive density (ELPD) 
+and cross validation accuracy. 
+Alternatively, the LOOIC must be minimized 
+to select the strongest model [10]. In <i>Table 7</i>, 
+Model 6 has the lowest LOOIC and highest ELPD 
+suggesting higher out-of-sample predictive accuracy.
+
+<!-- TABLE 7-->
+<table>
+<caption>Table 7: ELPD & LOOIC for Models 3,5, and 6</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Model </th>
+   <th style="text-align:right;"> LOOIC </th>
+   <th style="text-align:right;"> ELPD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Model 3 </td>
+   <td style="text-align:right;"> 12785.17 </td>
+   <td style="text-align:right;"> -6392.585 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 5 </td>
+   <td style="text-align:right;"> 12780.23 </td>
+   <td style="text-align:right;"> -6390.113 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 6 </td>
+   <td style="text-align:right;"> 12779.38 </td>
+   <td style="text-align:right;"> -6389.692 </td>
+  </tr>
+</tbody>
+</table>
+
+For stratified k-fold cross validation, 
+the data-set is divided into 80% for training and 20% validation 
+with respect to its sample proportions. 
+Ten equal size folds are created on training data 
+and each model is iteratively applied to nine folds, 
+while accuracy metrics are evaluated on the tenth fold of the training data. 
+The process is repeated until each fold has been evaluated [7]. 
+
+<i>Table 8</i> contains the mean accuracy, 
+sensitivity, and specificity for the three candidate models 
+after applying cross validation on the training data. 
+Only slight discrepancies are apparent 
+in the performance metrics between the three models. 
+The results for predictive density, LOOIC, 
+and cross validation accuracy suggest 
+that Model 6 slightly outperforms the rest. 
+Thus, Model 6 is established as the final model.
+
+<h6>Final Model</h6>
+<p>
+log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>)=
+&beta;<sub>0</sub> +
+&beta;<sub>1</sub>(Menstrual Irregularity) +
+&beta;<sub>2</sub>(Chronic Pain Level) +
+&beta;<sub>3</sub>(Hormone Abnormality) +
+&beta;<sub>4</sub>(Infertility) +
+&beta;<sub>5</sub>(BMI)
+</p>
+
+<p>
+&beta;<sub>0</sub> ~ Cauchy(x<sub>0</sub> = 0, &#947 = 10) <br>
+&beta;<sub>1</sub>, &beta;<sub>2</sub>, &beta;<sub>3</sub>, &beta;<sub>4</sub>, &beta;<sub>5</sub> ~ Cauchy(x<sub>0</sub> = 0, &#947 = 2.5)
+</p>
+
+<!-- TABLE 8 -->
+<table>
+<caption>Table 8: K-Fold CV Performance Metrics</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Model </th>
+   <th style="text-align:right;"> Balanced Accuracy </th>
+   <th style="text-align:right;"> Sensitivity </th>
+   <th style="text-align:right;"> Specificity </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Model 3 </td>
+   <td style="text-align:right;"> 0.6108165 </td>
+   <td style="text-align:right;"> 0.6515880 </td>
+   <td style="text-align:right;"> 0.5700450 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 5 </td>
+   <td style="text-align:right;"> 0.6099075 </td>
+   <td style="text-align:right;"> 0.6459776 </td>
+   <td style="text-align:right;"> 0.5738375 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Model 6 </td>
+   <td style="text-align:right;"> 0.6104180 </td>
+   <td style="text-align:right;"> 0.6466010 </td>
+   <td style="text-align:right;"> 0.5742350 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+<!--CONCLUSION-->
+<section id="section-5">
+<div class = "conclusion">
+<h3><b>CONCLUSION</b></h3>
+Final assessments for Model 6 are evaluated on the test set 
+and summarized in <i>Table 9</i> and <i>Figure 5</i>. 
+An area of 0.67 under the ROC curve suggests that 
+there is a 67% probability of endometriosis correctly being diagnosed 
+across all thresholds. In developing this model, 
+priority is placed on optimizing sensitivity, 
+so that cases of endometriosis are being accurately detected. 
+With an accuracy of about 63% and a sensitivity of about 67%, 
+this Bayesian predictive model outperforms routine vaginal examinations 
+by nearly 30% [11]. 
+
+ <!-- FIGURE 6 -->
+<figure class = "figures">
+    <img src="Endo.Conclusion.Figure6.png" alt="ROC CURVE FINAL MODEL", width="800", height="600">
+    <figcaption><i>Figure 6: ROC Curve - Final Model</i></figcaption>
+</figure>
+
+<!-- TABLE 9 -->
+<table>
+<caption>Table 9: Out-of-Sample Performance Metrics for Final Model</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Metric </th>
+   <th style="text-align:right;"> Value </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Accuracy </td>
+   <td style="text-align:right;"> 0.6255732 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sensitivity </td>
+   <td style="text-align:right;"> 0.6654321 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Specificity </td>
+   <td style="text-align:right;"> 0.5857143 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> AUC </td>
+   <td style="text-align:right;"> 0.6607107 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> LOOIC </td>
+   <td style="text-align:right;"> 2554.6130248 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ELPD </td>
+   <td style="text-align:right;"> -1277.3065124 </td>
+  </tr>
+</tbody>
+</table>
+
+Although the final model's accuracy only slightly exceeds random chance, 
+this analysis serves as a starting point for further development 
+of diagnostic algorithms for endometriosis.
+</div>
+</section>
+
+<section id="section-6">
+<div class = "references">
+<h3> REFERENCES</h3>
+<ul>
+    [1]Endometriosis Australia. Diagnosis of Endometriosis. 
+    Available from: https://endometriosisaustralia.org/diagnosis/
+</ul>
+
+<ul>
+    [2] Cleveland Clinic. 
+    Endometriosis: Causes, Symptoms, 
+    Diagnosis & Treatment. 
+    Available from: 
+    https://my.clevelandclinic.org/health/diseases/10857-endometriosis
+</ul>
+
+<ul>
+    [3] Anietie M. Endometriosis Dataset. 
+    Kaggle. 
+    Available from: 
+    https://www.kaggle.com/datasets/michaelanietie/endometriosis-dataset
+</ul>
+
+<ul>
+    [4] Gelman A, Carlin JB, Stern HS, Dunson DB, Vehtari A, Rubin DB. 
+    Bayesian Data Analysis. 3rd ed. Boca Raton (FL): CRC Press; 2013.
+</ul>
+
+<ul>
+    [5] Hitchcock DB. Bayesian Regression and Classification Notes. 
+    University of South Carolina.
+</ul>
+
+<ul>
+    [6] Gelman A, Jakulin A, Pittau MG, Su YS. 
+    A Weakly Informative Default Prior Distribution for Logistic 
+    and Other Regression Models. 
+    Annals of Applied Statistics. 2008.
+</ul>
+
+<ul>
+    [7] Jacobs Laboratory. 
+    Metropolis-Hastings Sampling Cheat Sheet. 
+    University of Rochester.
+</ul>
+
+<ul>
+    [8] Gelman A, Carlin JB, Stern HS, Dunson DB, Vehtari A, Rubin DB. 
+    Bayesian Data Analysis. 3rd ed. Boca Raton (FL): 
+    CRC Press; 2013.
+</ul>
+
+<ul>
+    [9] Stan Development Team. Posterior and Prior Predictive Checks. 
+    In: Stan User's Guide. 
+    Available from: https://mc-stan.org/docs/stan-users-guide/posterior-predictive-checks.html
+</ul>
+
+<ul>
+    [10] Vehtari A, Gelman A, Gabry J. 
+    Practical Bayesian Model Evaluation 
+    Using Leave-One-Out Cross-Validation 
+    and WAIC. arXiv. 2015.
+</ul>
+
+<ul>
+    [11] Kido A. MRI in the diagnosis of endometriosis and related diseases. 
+    Japanese Journal of Radiology. 
+    2022;40(3):213-227. doi:10.1007/s11604-021-01215-z.
+</ul>
+</div>
+</section>
+
+</body>
+</html>
