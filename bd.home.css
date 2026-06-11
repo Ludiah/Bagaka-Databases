@@ -62,8 +62,10 @@ div.container {
   padding: 10px;
 }
 
-div.container {
-  background: red !important;
+@media (max-width: 480px) {
+  div.container {
+    background: red;
+  }
 }
 
 /* BOXES */
