@@ -64,7 +64,7 @@ ul.topnav li a:hover {
 
 @media (max-width: 480px) {
   div.container {
-    background: red;
+    background: red !important;
   }
 }
 
