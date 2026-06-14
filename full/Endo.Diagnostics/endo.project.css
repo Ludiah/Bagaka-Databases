@@ -218,5 +218,35 @@ figure.figures {
     margin: 20px auto;
 }
 
+/* DOWNLOAD LINK */
+div.document {
+    text-align: left;
+    justify-content: center;
+    font-family: 'Padyakke Expanded One', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #F2D6CE;
+    width: 800px;
+    margin: 20px auto;
+}
 
+a.document {
+    text-align: left;
+    justify-content: center;
+    font-family: 'Padyakke Expanded One', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #F2D6CE;
+    width: 800px;
+    margin: 20px auto;
+    text-decoration: none;
+    background-color: #0D0D0D;
+}
+/* */
+
+/* HOVER EFFECT FOR DOWNLOAD LINK */
+a.document:hover {
+    background-color: #F2D6CE;
+    color: #0D0D0D;
+}
 

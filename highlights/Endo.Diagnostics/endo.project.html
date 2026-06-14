@@ -43,6 +43,7 @@
 
 
 <!-- 1. THE TABLE OF CONTENTS -->
+<!--
  <div class="scrollable-container">
  <nav class="toc-box">
     <ul class = "toc">
@@ -61,6 +62,7 @@
     </ul>
 </nav>
 </div>
+-->
 
 <!-- CONTENT -->
 <h2>BAYESIAN DIAGNOSTIC MODEL DEVELOPMENT FOR ENDOMETRIOSIS 
@@ -91,7 +93,9 @@
 </div>
 </section>
 
+
 <!-- INTRODUCTION -->
+<!--
 <section id="section-2">
 <div class = "introduction">
     <h3><b>INTRODUCTION</b></h3>
@@ -115,10 +119,13 @@
     </p>
 </div>
 </section>
+-->
 
 <!-- METHODOLOGY -->
 <section id="section-3">
     <!-- DATA COLLECTION -->
+     <!--
+
 <div class = "methodology">
     <h3><b>METHODOLOGY</b></h3>
     <section id="section-3.1">
@@ -134,8 +141,9 @@
         and should not be generalized to its respective population. 
     </p>
     </section>
-
+-->
     <!-- EDA -->
+     <!--
     <section id="section-3.2">
     <h4><b>EDA:</b></h4>
     <p class="eda">
@@ -143,8 +151,10 @@
         of whether or not endometriosis is present (0 = No, 1 = Yes). 
         These predictors are highlighted in <i>Table 1</i>.
     </p>
+-->
 
 <!-- TABLE 1 -->
+ <!--
 <table>
 <caption>Table 1: Description of Predictors</caption>
  <thead>
@@ -188,7 +198,7 @@
   </tr>
   <tr>
    <td style="text-align:left;"> BMI </td>
-   <td style="text-align:left;"> Infertility </td>
+   <td style="text-align:left;"> Continuous </td>
    <td style="text-align:left;"> Body Mass Index (18-40 kilograms per square meter). </td>
   </tr>
 </tbody>
@@ -209,8 +219,11 @@ Since endometriosis is more common in women of reproductive age,
 and less common in women experiencing and transitioning into menopause, 
 we would expect this condition to affect a narrower range (smaller variance) 
 of individuals. 
+-->
+
 
 <!-- FIGURE 1 -->
+ <!--
 <figure class = "figures">
     <img src="Endo.EDA.Figure1.png" alt="EXPLORATORY DATA ANALYSIS GRAPHS", width="800", height="600">
     <figcaption><i>Figure 1: Histograms & Boxplots of Quantitative Variables</i></figcaption>
@@ -221,8 +234,10 @@ endometriosis appears to be more prevalent in individuals
 who experience menstrual irregularity, hormone abnormality, and infertility. 
 These binary variables are expected to share a positive relationship 
 with the odds of an endometriosis diagnosis.
+--> 
 
 <!-- FIGURE 2 -->
+ <!--
 <figure class = "figures">
     <img src="Endo.EDA.Figure2.png" alt="EXPLORATORY DATA ANALYSIS GRAPHS", width="800", height="600">
     <figcaption><i>Figure 2: Bar Charts of Binary Variables</i></figcaption>
@@ -234,15 +249,19 @@ between the presence of endometriosis and hormone level abnormalities.
 Other significant predictors that share a significant positive relationship 
 with the response are chronic pain level, infertility and menstrual irregularity respectively. 
 These explanatory variable are expected to dominate the regression model.
-
+-->
 <!-- FIGURE 3 -->
+<!--
 <figure class = "figures">
     <img src="Endo.EDA.Figure3.png" alt="EXPLORATORY DATA ANALYSIS GRAPHS", width="800", height="600">
     <figcaption><i>Figure 3: Correlation Heat Map</i></figcaption>
 </figure>
     </section>
 
+-->
+
 <!-- BAYESIAN LOGISTIC REGRESSION -->
+ <!--
  <section id="section-3.3">
  <h4><b>BAYESIAN LOGISTIC REGRESSION:</b></h4>
  <p>
@@ -314,8 +333,10 @@ As a result, the prior mean on &#946<sub>3</sub> is <i>log(1.25)</i>
 and the standard deviation is the halfway distance between this value 
 and the upper and lower bounds bounds of  &#946<sub>3</sub>[5]. 
 <i>Table 2</i> provides the prior mean and standard deviation selected for each coefficient.
+-->
 
 <!-- TABLE 2 -->
+ <!--
 <table>
 <caption>Table 2: Prior Mean and Standard Deviation for Coefficients</caption>
  <thead>
@@ -371,8 +392,10 @@ the expected range of values can be estimated. <i>Table 3</i>
  is unlikely to have endometriosis, 
  but with each increased value in the coefficients, 
  the odds of a positive diagnosis increase. 
+-->
 
-<!-- TABLE 3 -->
+<!-- TABLE 3 
+
 <table>
 <caption>Table 3: 95 Percent Prior Quantile Intervals</caption>
  <thead>
@@ -515,8 +538,9 @@ until the Markov chains converge to the posterior distribution [7].
 </div>
 </section>
 </section>
+-->
 
-<!-- RESULTS -->
+<!-- RESULTS
 <section id="section-4">
 <div class = "results">
     <h3><b>RESULTS</b></h3>
@@ -548,8 +572,9 @@ To further assess their significance,
  so that age is scaled to every five years 
  and BMI is analyzed categorically. 
  <i>Table 4</i> shows the frequency table for the BMI categories.
+ -->
 
-<!-- TABLE 4 -->
+<!-- TABLE 4 
  <table>
 <caption>Table 4: Frequency of BMI Categories</caption>
  <thead>
@@ -787,14 +812,16 @@ These models achieved the highest metrics for specificity, Cohen's Kappa, and AU
  after accounting for random chance. 
  Due to the results of this section, 
  the remainder of the analysis is performed on Models 3, 5, and 6.
+-->
 
- <!-- FIGURE 4 -->
+ <!-- FIGURE 4 
 <figure class = "figures">
     <img src="Endo.EDA.Figure4.png" alt="ROC CURVES", width="800", height="600">
     <figcaption><i>Figure 4: ROC Curves</i></figcaption>
 </figure>
+-->
 
-<!-- TABLE 6 -->
+<!-- TABLE 6 
 <table>
 <caption>Table 6: Preliminary Performance Metrics</caption>
  <thead>
@@ -859,8 +886,9 @@ which represents the observed data distribution
 closely overlaps the light blue line representing data simulated 
 by the posterior distribution. Based on these features, 
 all six models appear to be an adequate fit for newly observed data [8]. 
+-->
 
- <!-- FIGURE 5 -->
+ <!-- FIGURE 5 
 <figure class = "figures">
     <img src="Endo.Results.Figure5.png" alt="POSTERIOR PREDICTIVE CHECKS", width="800", height="600">
     <figcaption><i>Figure 5: Posterior Predictive Checks (Models 1-6)</i></figcaption>
@@ -877,8 +905,9 @@ Alternatively, the LOOIC must be minimized
 to select the strongest model [10]. In <i>Table 7</i>, 
 Model 6 has the lowest LOOIC and highest ELPD 
 suggesting higher out-of-sample predictive accuracy.
+-->
 
-<!-- TABLE 7-->
+<!-- TABLE 7
 <table>
 <caption>Table 7: ELPD & LOOIC for Models 3,5, and 6</caption>
  <thead>
@@ -940,8 +969,10 @@ log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>)=
 &beta;<sub>0</sub> ~ Cauchy(x<sub>0</sub> = 0, &#947 = 10) <br>
 &beta;<sub>1</sub>, &beta;<sub>2</sub>, &beta;<sub>3</sub>, &beta;<sub>4</sub>, &beta;<sub>5</sub> ~ Cauchy(x<sub>0</sub> = 0, &#947 = 2.5)
 </p>
+--> 
 
-<!-- TABLE 8 -->
+
+<!-- TABLE 8 
 <table>
 <caption>Table 8: K-Fold CV Performance Metrics</caption>
  <thead>
@@ -976,8 +1007,9 @@ log( <sup>&pi;</sup>&frasl;<sub>1 - &pi;</sub>)=
 </div>
 </section>
 </section>
+-->
 
-<!--CONCLUSION-->
+<!--CONCLUSION
 <section id="section-5">
 <div class = "conclusion">
 <h3><b>CONCLUSION</b></h3>
@@ -991,14 +1023,16 @@ so that cases of endometriosis are being accurately detected.
 With an accuracy of about 63% and a sensitivity of about 67%, 
 this Bayesian predictive model outperforms routine vaginal examinations 
 by nearly 30% [11]. 
+-->
 
- <!-- FIGURE 6 -->
+ <!-- FIGURE 6 
 <figure class = "figures">
     <img src="Endo.Conclusion.Figure6.png" alt="ROC CURVE FINAL MODEL", width="800", height="600">
     <figcaption><i>Figure 6: ROC Curve - Final Model</i></figcaption>
 </figure>
+-->
 
-<!-- TABLE 9 -->
+<!-- TABLE 9 
 <table>
 <caption>Table 9: Out-of-Sample Performance Metrics for Final Model</caption>
  <thead>
@@ -1113,6 +1147,11 @@ of diagnostic algorithms for endometriosis.
 </ul>
 </div>
 </section>
+-->
+
+<div class = "document">
+<a class = "document" href="EndometriosisDiagnostics.pdf" target="_blank">Download Manuscript (PDF)</a>
+</div>
 
 </body>
-</html>
+</html>`
