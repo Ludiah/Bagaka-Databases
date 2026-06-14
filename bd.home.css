@@ -1,5 +1,4 @@
 /******************** HOME PAGE ********************/ 
-
 /* HEADINGS */
 h1 {color: #F2D6CE; 
   font-size: 60px; 
@@ -53,20 +52,19 @@ ul.topnav li a:hover {
 .container {
   display: flex;
   flex-direction: row;
+  background-color: #0D0D0D;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.container div {
+.container div{
   width: 300px;
   margin: 10px;
+  text-align: left;  
+  font-size: 20px;
   padding: 10px;
 }
 
-@media (max-width: 480px) {
-  div.container {
-    background: red !important;
-  }
-}
 
 /* BOXES */
 a.vitamins {
